@@ -1,7 +1,9 @@
 # **Labour Force Survey Digitization Using Generative AI**
 
 ## **Overview**
-This repository provides a comprehensive pipeline for digitizing Labour Force Survey (LFS) forms using Generative AI. The workflow includes extracting text from PDFs, consolidating structured data, and performing semantic searches and analysis using vector databases and OpenAI's GPT-4. While LFS are used as an example, the script can be applied to other types of text extraction, especially to other survey forms.
+This repository comes with ILO Research Brief "A new chapter for the ILO’s textual assets: Applying Generative AI to Labour Force Survey questionnaires" by Pawel Gmyrek and Poleth Vega Ruales, DOI: https://doi.org/10.54394/SORG5455
+
+It provides a comprehensive pipeline for digitizing Labour Force Survey (LFS) forms using Generative AI. The workflow includes extracting text from PDFs, consolidating structured data, and performing semantic searches and analysis using vector databases and OpenAI's GPT-4. While LFS are used as an example, the script can be applied to other types of text extraction, especially to other survey forms.
 
 ## **Folder Structure**
 - **`Database/`**: Contains consolidated `.xlsx` files and semantic search results.
