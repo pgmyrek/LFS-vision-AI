@@ -1,54 +1,38 @@
-# Labour Force Survey Digitization using Generative AI
+# **Labour Force Survey Digitization Using Generative AI**
 
-## Overview
-This repository demonstrates how to process Labour Force Survey (LFS) forms using Generative AI, including PDF-to-text conversion, data consolidation, semantic search, and analysis.
+## **Overview**
+This repository provides a comprehensive pipeline for digitizing Labour Force Survey (LFS) forms using Generative AI. The workflow includes extracting text from PDFs, consolidating structured data, and performing semantic searches and analysis using vector databases and OpenAI's GPT-4. While LFS are used as an example, the script can be applied to other types of text extraction, especially to other survey forms.
 
-## Folder Structure
-- **.env**: Stores sensitive API keys (ignored by Git).
-- **.gitignore**: Excludes sensitive and temporary files from Git.
-- **requirements.txt**: Python dependencies.
-- **notebooks**:
-  - `Step_1_Extract_content_vision_AI.ipynb`: Extract text from PDFs using AI.
-  - `Step_2_LFS_MAIN_SCRIPT.ipynb`: Main script for processing extracted data.
-  - `Step_3__Consolidate_Database.ipynb`: Consolidates extracted data into a single database.
-  - `Step4_LFS_Weaviate.ipynb`: Builds a semantic search database.
-  - `Step5_LFS_Analysis.ipynb`: Analyzes survey data.
-- **Images_temp/**: Temporary folder for images generated during processing.
-- **To_process/**: Folder for input PDFs.
+## **Folder Structure**
+- **`Database/`**: Contains consolidated `.xlsx` files and semantic search results.
+- **`Images_temp/`**: Temporary folder for storing images generated during PDF processing.
+- **`To_process/`**: Directory for input PDF files awaiting processing.
+- **`.env`**: File to securely store sensitive API keys (excluded from Git).
+- **`.gitignore`**: Specifies files and folders to exclude from version control.
+- **`README.md`**: Project documentation (this file).
+- **`requirements.txt`**: Python dependencies required for the project.
+- **Jupyter Notebooks**:
+  - **`Step_1_Extract_content_vision_AI.ipynb`**: Extracts and structures text from PDFs using AI.
+  - **`Step_2_Extract_Q-A_markers.ipynb`**: Extracts and saves Q&A markers from structured text.
+  - **`Step_3_LFS_Consolidate_Database.ipynb`**: Consolidates structured files into a unified database.
+  - **`Step_4_LFS_Weaviate.ipynb`**: Builds and queries a semantic search database using vector embeddings.
 
-## Usage
-1. Clone the repository:
+## **Setup Instructions**
+
+### **Clone the Repository**
+1. Clone the repository to your local machine:
    ```bash
    git clone https://github.com/yourusername/LFS-Digitization.git
    cd LFS-Digitization
 
+### **Install Main Dependencies**
+2. Install the required Python dependencies using:
+   pip install -r requirements.txt
 
-## Step 1: Extract Content (Vision AI)
+### **Configure API Keys**
+3. Create `.env` file in the root directory and provide the following content:
+   OPENAI_API_KEY=your_openai_api_key
+   WEAVIATE_URL=your_weaviate_cluster_url
+   WEAVIATE_USERNAME=your_weaviate_username
+   WEAVIATE_PASSWORD=your_weaviate_password
 
-This step involves:
-1. Converting survey PDFs into individual images.
-2. Using Generative AI (GPT-4o) to extract text content from the images.
-3. Saving the extracted content into a structured Word document.
-
-### Workflow
-1. PDF files are processed from the `To_process/` directory.
-2. Each PDF is split into individual JPEG images, stored in the `Images_temp/` directory.
-3. Each image is sent to GPT-4o, which:
-   - Identifies questions and answer options.
-   - Structures the content with questions starting with "Q" and answers starting with "A."
-4. The extracted text is appended to a Word document (`Extracted.docx`).
-
-### Inputs
-- **PDF files**: Stored in the `To_process/` folder.
-
-### Outputs
-- **Word document**: A `.docx` file (`Extracted.docx`) containing the extracted text.
-- **Temporary images**: Saved in the `Images_temp/` directory.
-
-### Notes
-- Ensure the OpenAI API key is set up in a `.env` file before running this step.
-- Update the `doc_path` variable in the code to customize the output file's name if needed.
-- This step prepares the data for consolidation and structuring in Step 2.
-
-### Command to Run
-Execute the Jupyter notebook `Step_1_Extract_content_vision_AI.ipynb` to process the files and generate outputs.
